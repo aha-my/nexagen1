@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { User, Calendar, Save, Loader2, Camera } from 'lucide-react';
+import { User, Calendar, Save, Loader2, Camera, LogOut, Mail, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -39,7 +39,7 @@ export default function ProfileSettings({ onClose }: ProfileSettingsProps) {
   const [gender, setGender] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
 
   useEffect(() => {
     fetchProfile();
@@ -274,6 +274,33 @@ export default function ProfileSettings({ onClose }: ProfileSettingsProps) {
           </>
         )}
       </Button>
+
+      <Button 
+        onClick={signOut} 
+        variant="outline" 
+        className="w-full border-destructive text-destructive hover:bg-destructive hover:text-destructive-foreground"
+      >
+        <LogOut className="w-4 h-4 mr-2" />
+        Sign Out
+      </Button>
+
+      <div className="pt-4 border-t border-border text-center space-y-2">
+        <p className="text-xs text-muted-foreground font-medium">NexaLink</p>
+        <div className="flex items-center justify-center gap-1 text-xs text-muted-foreground">
+          <span>Created by</span>
+          <span className="font-medium">Tharun</span>
+        </div>
+        <div className="flex items-center justify-center gap-4 text-xs text-muted-foreground">
+          <a href="mailto:tarunarul0@gmail.com" className="flex items-center gap-1 hover:text-primary transition-colors">
+            <Mail className="w-3 h-3" />
+            tarunarul0@gmail.com
+          </a>
+          <a href="https://nexa.co" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-primary transition-colors">
+            <Globe className="w-3 h-3" />
+            nexa.co
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
