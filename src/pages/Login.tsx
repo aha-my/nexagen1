@@ -43,7 +43,7 @@ export default function Login() {
             <MessageCircle className="w-7 h-7 sm:w-8 sm:h-8 text-primary-foreground" />
           </div>
           <div>
-            <CardTitle className="text-xl sm:text-2xl font-display">Welcome Back</CardTitle>
+            <CardTitle className="text-xl sm:text-2xl font-display">Welcome to NexaLink</CardTitle>
             <CardDescription className="text-sm sm:text-base">Sign in to your NexaLink account</CardDescription>
           </div>
         </CardHeader>
