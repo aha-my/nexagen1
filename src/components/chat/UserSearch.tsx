@@ -32,11 +32,10 @@ export default function UserSearch({ onClose }: UserSearchProps) {
     
     setLoading(true);
     const { data, error } = await supabase
-      .from('profiles')
-      .select('*')
-      .ilike('username', `%${searchQuery}%`)
-      .neq('user_id', user.id)
-      .limit(10);
+      .rpc('search_profiles_by_username', {
+        search_query: searchQuery,
+        exclude_user_id: user.id
+      });
 
     if (error) {
       toast.error('Failed to search users');

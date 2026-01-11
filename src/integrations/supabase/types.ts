@@ -185,7 +185,16 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      search_profiles_by_username: {
+        Args: { exclude_user_id: string; search_query: string }
+        Returns: {
+          avatar_url: string
+          bio: string
+          id: string
+          user_id: string
+          username: string
+        }[]
+      }
     }
     Enums: {
       friendship_status: "pending" | "accepted" | "blocked"
