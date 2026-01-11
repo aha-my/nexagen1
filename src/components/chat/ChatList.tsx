@@ -150,11 +150,11 @@ export default function ChatList({ onSelectChat, selectedFriendId }: ChatListPro
 
   if (loading) {
     return (
-      <div className="p-4 space-y-3">
+      <div className="p-3 sm:p-4 space-y-2 sm:space-y-3">
         {[1, 2, 3].map((i) => (
           <div key={i} className="flex items-center gap-3 p-3 animate-pulse">
-            <div className="w-12 h-12 rounded-full bg-muted" />
-            <div className="flex-1 space-y-2">
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-muted flex-shrink-0" />
+            <div className="flex-1 space-y-2 min-w-0">
               <div className="h-4 w-24 bg-muted rounded" />
               <div className="h-3 w-32 bg-muted rounded" />
             </div>
@@ -166,9 +166,9 @@ export default function ChatList({ onSelectChat, selectedFriendId }: ChatListPro
 
   if (friends.length === 0) {
     return (
-      <div className="p-8 text-center text-muted-foreground">
-        <p>No friends yet</p>
-        <p className="text-sm mt-1">Search for users to add friends!</p>
+      <div className="p-6 sm:p-8 text-center text-muted-foreground">
+        <p className="text-sm sm:text-base">No friends yet</p>
+        <p className="text-xs sm:text-sm mt-1">Search for users to add friends!</p>
       </div>
     );
   }
@@ -179,27 +179,27 @@ export default function ChatList({ onSelectChat, selectedFriendId }: ChatListPro
         <button
           key={friend.id}
           onClick={() => onSelectChat(friend)}
-          className={`w-full flex items-center gap-3 p-4 hover:bg-secondary/50 transition-colors text-left ${
+          className={`w-full flex items-center gap-3 p-3 sm:p-4 hover:bg-secondary/50 active:bg-secondary transition-colors text-left ${
             selectedFriendId === friend.user_id ? 'bg-secondary' : ''
           }`}
         >
-          <Avatar className="w-12 h-12">
+          <Avatar className="w-11 h-11 sm:w-12 sm:h-12 flex-shrink-0">
             <AvatarImage src={friend.avatar_url || undefined} />
-            <AvatarFallback className="gradient-primary text-primary-foreground text-lg">
+            <AvatarFallback className="gradient-primary text-primary-foreground text-base sm:text-lg">
               {friend.username[0].toUpperCase()}
             </AvatarFallback>
           </Avatar>
           <div className="flex-1 min-w-0">
-            <div className="flex items-center justify-between">
-              <p className="font-medium">@{friend.username}</p>
+            <div className="flex items-center justify-between gap-2">
+              <p className="font-medium text-sm sm:text-base truncate">@{friend.username}</p>
               {friend.lastMessageTime && (
-                <span className="text-xs text-muted-foreground">
+                <span className="text-[10px] sm:text-xs text-muted-foreground flex-shrink-0">
                   {formatDistanceToNow(new Date(friend.lastMessageTime), { addSuffix: true })}
                 </span>
               )}
             </div>
             {friend.lastMessage && (
-              <p className="text-sm text-muted-foreground truncate">{friend.lastMessage}</p>
+              <p className="text-xs sm:text-sm text-muted-foreground truncate">{friend.lastMessage}</p>
             )}
           </div>
         </button>

@@ -171,12 +171,12 @@ export default function ProfileSettings({ onClose }: ProfileSettingsProps) {
   }
 
   return (
-    <div className="p-6 space-y-6">
-      <div className="flex flex-col items-center gap-4">
+    <div className="p-4 sm:p-6 space-y-5 sm:space-y-6">
+      <div className="flex flex-col items-center gap-3 sm:gap-4">
         <div className="relative">
-          <Avatar className="w-24 h-24">
+          <Avatar className="w-20 h-20 sm:w-24 sm:h-24">
             <AvatarImage src={profile?.avatar_url || undefined} />
-            <AvatarFallback className="gradient-primary text-primary-foreground text-3xl">
+            <AvatarFallback className="gradient-primary text-primary-foreground text-2xl sm:text-3xl">
               {username[0]?.toUpperCase() || 'U'}
             </AvatarFallback>
           </Avatar>
@@ -200,26 +200,26 @@ export default function ProfileSettings({ onClose }: ProfileSettingsProps) {
             )}
           </Button>
         </div>
-        <p className="text-sm text-muted-foreground">Tap to change avatar</p>
+        <p className="text-xs sm:text-sm text-muted-foreground">Tap to change avatar</p>
       </div>
 
       <div className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="username">Username</Label>
+          <Label htmlFor="username" className="text-sm">Username</Label>
           <div className="relative">
             <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input
               id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value.toLowerCase().replace(/[^a-z0-9_]/g, ''))}
-              className="pl-10"
+              className="pl-10 h-11 sm:h-10 text-base sm:text-sm"
               placeholder="Your username"
             />
           </div>
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="bio">Bio</Label>
+          <Label htmlFor="bio" className="text-sm">Bio</Label>
           <Textarea
             id="bio"
             value={bio}
@@ -227,27 +227,28 @@ export default function ProfileSettings({ onClose }: ProfileSettingsProps) {
             placeholder="Tell us about yourself..."
             rows={3}
             maxLength={160}
+            className="text-base sm:text-sm resize-none"
           />
           <p className="text-xs text-muted-foreground text-right">{bio.length}/160</p>
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="gender">Gender</Label>
+          <Label htmlFor="gender" className="text-sm">Gender</Label>
           <Select value={gender} onValueChange={(val) => setGender(val)}>
-            <SelectTrigger>
+            <SelectTrigger className="h-11 sm:h-10 text-base sm:text-sm">
               <SelectValue placeholder="Select gender" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="male">Male</SelectItem>
-              <SelectItem value="female">Female</SelectItem>
-              <SelectItem value="other">Other</SelectItem>
-              <SelectItem value="prefer_not_to_say">Prefer not to say</SelectItem>
+              <SelectItem value="male" className="py-3 sm:py-2">Male</SelectItem>
+              <SelectItem value="female" className="py-3 sm:py-2">Female</SelectItem>
+              <SelectItem value="other" className="py-3 sm:py-2">Other</SelectItem>
+              <SelectItem value="prefer_not_to_say" className="py-3 sm:py-2">Prefer not to say</SelectItem>
             </SelectContent>
           </Select>
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="dob">Date of Birth</Label>
+          <Label htmlFor="dob" className="text-sm">Date of Birth</Label>
           <div className="relative">
             <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input
@@ -255,13 +256,13 @@ export default function ProfileSettings({ onClose }: ProfileSettingsProps) {
               type="date"
               value={dateOfBirth}
               onChange={(e) => setDateOfBirth(e.target.value)}
-              className="pl-10"
+              className="pl-10 h-11 sm:h-10 text-base sm:text-sm"
             />
           </div>
         </div>
       </div>
 
-      <Button onClick={handleSave} className="w-full gradient-primary" disabled={saving}>
+      <Button onClick={handleSave} className="w-full gradient-primary h-11 sm:h-10 text-base sm:text-sm" disabled={saving}>
         {saving ? (
           <>
             <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -278,7 +279,7 @@ export default function ProfileSettings({ onClose }: ProfileSettingsProps) {
       <Button 
         onClick={signOut} 
         variant="outline" 
-        className="w-full border-destructive text-destructive hover:bg-destructive hover:text-destructive-foreground"
+        className="w-full border-destructive text-destructive hover:bg-destructive hover:text-destructive-foreground h-11 sm:h-10 text-base sm:text-sm"
       >
         <LogOut className="w-4 h-4 mr-2" />
         Sign Out
@@ -290,12 +291,12 @@ export default function ProfileSettings({ onClose }: ProfileSettingsProps) {
           <span>Created by</span>
           <span className="font-medium">Tharun</span>
         </div>
-        <div className="flex items-center justify-center gap-4 text-xs text-muted-foreground">
-          <a href="mailto:tarunarul0@gmail.com" className="flex items-center gap-1 hover:text-primary transition-colors">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs text-muted-foreground">
+          <a href="mailto:tarunarul0@gmail.com" className="flex items-center gap-1 hover:text-primary active:text-primary transition-colors py-1">
             <Mail className="w-3 h-3" />
             tarunarul0@gmail.com
           </a>
-          <a href="https://nexa.co" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-primary transition-colors">
+          <a href="https://nexa.co" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-primary active:text-primary transition-colors py-1">
             <Globe className="w-3 h-3" />
             nexa.co
           </a>
